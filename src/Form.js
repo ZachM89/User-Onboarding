@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { withFormik, Form, Field, setNestedObjectValues } from "formik";
+import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 const UserForm = ({values, touched, errors, status}) => {
@@ -41,7 +41,7 @@ const UserForm = ({values, touched, errors, status}) => {
                     name="termsOfService"
                     checked={values.termsOfService}
                 />
-                <span className="checkmark"/>
+                {/* <span className="checkmark"/> */}
 
                 <button type="submit">Submit</button>
             </Form>
@@ -55,7 +55,7 @@ const FormikUserForm = withFormik({
             name: name || "",
             email: email || "",
             password: password || "",
-            termsOfService: termsOfService || ""
+            termsOfService: termsOfService || false
         };
     },
 
@@ -63,7 +63,7 @@ const FormikUserForm = withFormik({
         name: Yup.string().required("What is your name?"),
         email: Yup.string().required("What is your email?"),
         password: Yup.string().required("Please enter a password."),
-        termsOfService: Yup.string().required("Terms of Service must be accepted to continue.")
+        termsOfService: Yup.boolean().required("Terms of Service must be accepted to continue.")
     }),
 
     handleSubmit(values, { setStatus }) {
