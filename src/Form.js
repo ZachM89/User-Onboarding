@@ -46,14 +46,24 @@ const UserForm = ({values, touched, errors, status}) => {
                 <button type="submit">Submit</button>
             </Form>
 
+            {/* {function tosCheck(tosVal){
+                if (tosVal) {
+                    return "True";
+                } else {
+                    return "False";
+                }}
+            }  */}
+
             {users.map(user => (
                 <ul key={user.id}>
                     <li>Name: {user.name}</li>
                     <li>Email: {user.email}</li>
-                    {/* <li>ToS: {if(user.termsOfService){"True"}else{"False"}}</li> */}
+                    <li>ToS: {user.termsOfService ? "True" : "False"}</li>
                     <li>Password: {user.password}</li>
                 </ul>
             ))}
+            
+              
         </div>
     );
 };
