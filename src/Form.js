@@ -45,6 +45,15 @@ const UserForm = ({values, touched, errors, status}) => {
 
                 <button type="submit">Submit</button>
             </Form>
+
+            {users.map(user => (
+                <ul key={user.id}>
+                    <li>Name: {user.name}</li>
+                    <li>Email: {user.email}</li>
+                    {/* <li>ToS: {if(user.termsOfService){"True"}else{"False"}}</li> */}
+                    <li>Password: {user.password}</li>
+                </ul>
+            ))}
         </div>
     );
 };
@@ -67,7 +76,7 @@ const FormikUserForm = withFormik({
     }),
 
     handleSubmit(values, { setStatus }) {
-        axios.post("https://reqres.in/api/users/", values)
+        axios.post("https://reqres.in/api/users_", values)
         .then(res => {
             setStatus(res.data);
             console.log(res);
